@@ -1,8 +1,45 @@
-import React from "react";
+import { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
+const postOptions = {
+  method: "POST",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ name: "Yikai", age: 23 }),
+};
+
+const getOptions = {
+  method: "GET",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+};
+
+const patchOptions = {
+  method: "PATCH",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ name: "Glen" }),
+};
+
+const deleteOptions = {
+  method: "DELETE",
+};
+
 function App() {
+  useEffect(() => {
+    fetch("http://localhost:3000/users/1", deleteOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
