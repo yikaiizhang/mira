@@ -1,3 +1,57 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": 1,
+      "name": "Jack"
+    },
+    {
+      "id": 2,
+      "name": "Matt"
+    },
+    {
+      "id": 3,
+      "name": "Tammy"
+    },
+    {
+      "id": 4,
+      "name": "Cynthia"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Branding",
+      "personId": 1,
+      "organization": "Marketing and Communications",
+      "created": 1604989757139
+    },
+    {
+      "id": 2,
+      "name": "Project Design",
+      "personId": 2,
+      "organization": "UX and Design",
+      "created": 1604989757139
+    },
+    {
+      "id": 3,
+      "name": "Development",
+      "personId": 2,
+      "organization": "Engineering",
+      "created": 1546300800000
+    },
+    {
+      "id": 4,
+      "name": "Payroll",
+      "personId": 3,
+      "organization": "HR and Culture",
+      "created": 1604980000011
+    },
+    {
+      "id": 5,
+      "name": "Team Management",
+      "personId": 4,
+      "organization": "Business Operations",
+      "created": 1546900800000
+    }
+  ]
 }
