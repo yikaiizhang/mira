@@ -1,6 +1,19 @@
-import React from "react";
+import { IUser } from "./ProjectFilter";
 
-export default function ProjectList({ list, users }) {
+interface IProject {
+  id: string;
+  name: string;
+  personId: string;
+  organization: string;
+  pin: boolean;
+}
+
+interface IProjectListProps {
+  list: IProject[];
+  users: IUser[];
+}
+
+export default function ProjectList({ list, users }: IProjectListProps) {
   return (
     <table>
       <thead>
@@ -19,7 +32,6 @@ export default function ProjectList({ list, users }) {
             </td>
           </tr>
         ))}
-        <tr></tr>
       </tbody>
     </table>
   );

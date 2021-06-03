@@ -1,4 +1,25 @@
-export default function ProjectFilter({ params, setParams, users }) {
+export interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  title: string;
+  organization: string;
+}
+
+interface IProjectFilterProps {
+  params: {
+    name: string;
+    personId: string;
+  };
+  setParams: (params: IProjectFilterProps["params"]) => void;
+  users: IUser[];
+}
+
+export default function ProjectFilter({
+  params,
+  setParams,
+  users,
+}: IProjectFilterProps) {
   return (
     <form>
       <input

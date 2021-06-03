@@ -13,7 +13,7 @@ import { useState, useEffect } from "react";
 //   };
 // };
 
-export const useDebounce = (value, delay) => {
+export const useDebounce = <Type>(value: Type, delay?: number): Type => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   //useEffect 返回一个函数作为下一次执行的前缀就是因为闭包可以保留上一次渲染的状态

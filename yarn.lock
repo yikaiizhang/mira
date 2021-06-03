@@ -1850,6 +1850,11 @@
   "resolved" "https://registry.npmjs.org/@types/q/-/q-1.5.4.tgz"
   "version" "1.5.4"
 
+"@types/qs@^6.9.6":
+  "integrity" "sha512-0/HnwIfW4ki2D8L8c9GVcG5I72s9jP5GSLVF0VIXDW00kmIpA6O33G7a8n59Tmh7Nz0WUC3rSb7PTY/sdW2JzA=="
+  "resolved" "https://registry.npmjs.org/@types/qs/-/qs-6.9.6.tgz"
+  "version" "6.9.6"
+
 "@types/react-dom@^17.0.0":
   "integrity" "sha512-ikqukEhH4H9gr4iJCmQVNzTB307kROe3XFfHAOTxOXPOw7lAoEXnM5KWTkzeANGL5Ce6ABfiMl/zJBYNi7ObmQ=="
   "resolved" "https://registry.npmjs.org/@types/react-dom/-/react-dom-17.0.5.tgz"
