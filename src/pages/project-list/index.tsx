@@ -20,15 +20,30 @@ export default function ProjectListPage() {
 
   useEffect(() => {
     fetch(`${apiURL}/projects?${qs.stringify(cleanObject(debounceParams))}`)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return [];
+        }
+      })
       .then((data) => {
         setList(data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, [debounceParams]);
 
   useEffect(() => {
     fetch(`${apiURL}/users`)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return [];
+        }
+      })
       .then((data) => {
         setUsers(data);
       });

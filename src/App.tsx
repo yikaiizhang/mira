@@ -1,11 +1,13 @@
 import "./App.css";
-import ProjectListPage from "./pages/project-list/index";
-import LoginPage from "./pages/login";
+import { useAuth } from "./hooks";
+import AuthenticatedPage from "./pages/authenticated";
+import UnauthenticatedPage from "./pages/unauthenticated";
 
 function App() {
+  const { user } = useAuth();
   return (
     <div className="App">
-      <LoginPage />
+      {user ? <AuthenticatedPage /> : <UnauthenticatedPage />}
     </div>
   );
 }

@@ -1,6 +1,6 @@
-import React, { useState, useContext, ReactNode } from "react";
+import React, { useState, ReactNode } from "react";
 import { IUser } from "../pages/project-list/ProjectFilter";
-import * as auth from "../auth-provider";
+import * as auth from "../auth";
 
 interface IForm {
   username: string;
@@ -14,7 +14,7 @@ interface IAuthContextValue {
   logout: () => Promise<void>;
 }
 
-const AuthContext =
+export const AuthContext =
   React.createContext<IAuthContextValue | undefined>(undefined);
 AuthContext.displayName = "AuthContext";
 
@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const register = (form: IForm) =>
     auth.register(form).then((user) => setUser(user));
+
   const logout = () => auth.logout().then(() => setUser(null));
 
   return (
@@ -33,12 +34,4 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </AuthContext.Provider>
   );
-};
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("UseAuth must be used inside AuthProvider");
-  }
-  return context;
 };

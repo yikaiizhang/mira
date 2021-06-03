@@ -1,8 +1,8 @@
 import React from "react";
-import { useAuth } from "../../context/auth-context";
+import { useAuth } from "../../hooks";
 
-export default function LoginPage() {
-  const { login, user } = useAuth();
+export default function Login() {
+  const { login } = useAuth();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const username = (event.currentTarget.elements[0] as HTMLInputElement)
@@ -15,7 +15,6 @@ export default function LoginPage() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {user ? `User Name is ${user?.name}` : null}
       <div>
         <label htmlFor="userName">User Name</label>
         <input type="text" id="userName" />
