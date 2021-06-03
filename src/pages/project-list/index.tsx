@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import ProjectFilter from "./ProjectFilter";
 import ProjectList from "./ProjectList";
-import qs from "qs";
 import { cleanObject } from "../../utils";
 import { useDebounce } from "../../hooks";
-
-const apiURL = process.env.REACT_APP_API_URL;
+import { useRequest } from "../../utils/api";
 
 export default function ProjectListPage() {
   const [params, setParams] = useState({
@@ -15,18 +13,12 @@ export default function ProjectListPage() {
 
   const [list, setList] = useState([]);
   const [users, setUsers] = useState([]);
+  const request = useRequest();
 
-  const debounceParams = useDebounce(params, 800);
+  const debounceParams = useDebounce(params, 300);
 
   useEffect(() => {
-    fetch(`${apiURL}/projects?${qs.stringify(cleanObject(debounceParams))}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return [];
-        }
-      })
+    request("/projects", { data: cleanObject(debounceParams) })
       .then((data) => {
         setList(data);
       })
@@ -36,17 +28,9 @@ export default function ProjectListPage() {
   }, [debounceParams]);
 
   useEffect(() => {
-    fetch(`${apiURL}/users`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return [];
-        }
-      })
-      .then((data) => {
-        setUsers(data);
-      });
+    request("/users").then((data) => {
+      setUsers(data);
+    });
   }, []);
 
   return (

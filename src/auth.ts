@@ -3,7 +3,7 @@ import { IUser } from "./pages/project-list/ProjectFilter";
 const apiURL = process.env.REACT_APP_API_URL;
 const localStorageKey = "__auth_provider_token__";
 
-export const getToken = window.localStorage.getItem(localStorageKey);
+export const getToken = () => window.localStorage.getItem(localStorageKey);
 
 export const handleUserResponse = ({ user }: { user: IUser }) => {
   window.localStorage.setItem(localStorageKey, user.token);
@@ -19,9 +19,19 @@ export const login = (data: { username: string; password: string }) => {
     body: JSON.stringify(data),
   };
   return fetch(`${apiURL}/login`, options)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status < 400) {
+        return response.json();
+      } else {
+        return Promise.reject(new Error("error"));
+      }
+    })
     .then((data) => {
-      return handleUserResponse(data);
+      if (data instanceof Error) {
+        return data;
+      } else {
+        return handleUserResponse(data);
+      }
     });
 };
 
